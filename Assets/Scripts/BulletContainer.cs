@@ -54,7 +54,7 @@ public class BulletContainer : MonoBehaviour
         {
             _loadedBullet = bullet;
             _loadedBullet.transform.rotation = this.transform.rotation;
-            return;
+            //return;
         }
         var powder = other.GetComponent<Powder>();
         if(powder!=null)
@@ -85,13 +85,19 @@ public class BulletContainer : MonoBehaviour
     
     public void Shoot()
     {
+        Debug.Log("BC shoot");
         if(_loadedBullet!=null)
         {
+            Debug.Log("bullet !=null");
             var totalForce=0f;
             foreach (var powder in _powders)
             {
                 totalForce += powder.Force;
-                Destroy(powder.gameObject);
+                Debug.Log($"destroy {powder.gameObject.name}");
+                if (powder.GetComponent<Bullet>() == null)
+                {
+                    Destroy(powder.gameObject);
+                }
             }
             _powders = new List<Powder>();
             _loadedBullet.transform.rotation = this.transform.rotation;

@@ -22,6 +22,7 @@ public class Cannon : MonoBehaviour
 
     public void Shoot()
     {
+        Debug.Log("Cannon shoot");
         bulletContainer.Shoot();
     }
 
